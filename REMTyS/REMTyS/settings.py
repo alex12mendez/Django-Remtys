@@ -147,6 +147,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'), # This points to your project-level static folder
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # For production later (keep it commented for development for now)
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
