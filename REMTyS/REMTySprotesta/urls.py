@@ -4,10 +4,12 @@ from django.urls import path
 from . import views
 from django.views.generic import RedirectView
 # REMTySprotesta/urls.py
-
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.remtys, name='inicio'),
+    path('admin/', admin.site.urls),
+    path('', include('REMTySprotesta.urls')),
 
   #  path('remtys/', views.remtys, name='remtys'),
     path('DOSatencion_ciudadana/', views.atencion, name='DOSatencion_ciudadana'),
