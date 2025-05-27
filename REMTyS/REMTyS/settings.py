@@ -41,13 +41,7 @@ LOGGING = {
     },
 }
 
-ALLOWED_HOSTS = [
-    '*',  # Temporalmente para debug
-    # O específicamente:
-    '.railway.app',
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = ['localhost','web-production-17d9.up.railway.app', ]
 
 
 # Application definition
