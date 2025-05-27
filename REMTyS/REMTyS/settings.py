@@ -25,12 +25,28 @@ SECRET_KEY = 'django-insecure-h4)z9@o+)!yu(9=ruo82eq9v693a_kfj3bzgp$rh4gi6r-jpc#
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
 
 ALLOWED_HOSTS = [
+    '*',  # Temporalmente para debug
+    # O específicamente:
+    '.railway.app',
     'localhost',
     '127.0.0.1',
-    '.railway.app',
-
 ]
 
 
