@@ -1,0 +1,248 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Atizapán de Zaragoza</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'remtys/imagenes/favicon.png' %}">
+</head>
+<body>
+    <!-- Header top bar -->
+    <div class="header-top">
+        <div class="header-left">
+            <button class="location-btn">
+                <i class="fas fa-map-marker-alt"></i> Ubicación
+            </button>
+        </div>
+        <div class="header-right">
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo section -->
+    <div class="logo-container">
+       <img src="{% static 'remtys/imagenes/logoAtizapan.png' %}" alt="Atizapán de Zaragoza" class="logo">
+    </div>
+    
+    <!-- Gradient bar after logo -->
+    <div class="gradient-bar"></div>
+    
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Hero section -->
+        <div class="hero-section">
+            <div class="hero-header">
+                <div class="hero-texts">
+                    <h1 class="hero-title">Ventanilla</h1>
+                    <h2 class="hero-subtitle">única digital</h2>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Buscar trámite o servicio...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Separador creativo -->
+        <div class="creative-separator">
+            <div class="wave-separator"></div>
+            <h2 class="separator-text">Selecciona el área que realiza tu trámite</h2>
+        </div>
+
+        <div class="areas-section">
+            <div class="areas-grid">
+                <!-- Desarrollo Económico -->
+                <a href="desarrollo_economico.html" class="area-container">
+                    <div class="area-item">
+                        <img src="{% static 'remtys/imagenes/ECONOMICO.png' %}" alt="Desarrollo Económico" class="area-image">
+                    </div>
+                    <h3 class="area-title">DESARROLLO ECONÓMICO</h3>
+                </a>
+                
+                <!-- Desarrollo Social -->
+                <a href="desarrollo_social.html" class="area-container">
+                    <div class="area-item">
+                        <img src="{% static 'remtys/imagenes/SOCIAL.png' %}" alt="Desarrollo Social" class="area-image">
+                    </div>
+                    <h3 class="area-title">DESARROLLO SOCIAL</h3>
+                </a>
+                
+                <!-- Servicios Públicos -->
+                <a href="servicios_publicos.html" class="area-container">
+                    <div class="area-item">
+                        <img src="{% static 'remtys/imagenes/PUBLICOS.png' %}" alt="Servicios Públicos" class="area-image">
+                    </div>
+                    <h3 class="area-title">SERVICIOS PÚBLICOS</h3>
+                </a>
+                
+                <!-- Protección Civil -->
+                <a href="proteccion_civil.html" class="area-container">
+                    <div class="area-item">
+                        <img src="{% static 'remtys/imagenes/BOMBEROS.png' %}" alt="Protección Civil" class="area-image">
+                    </div>
+                    <h3 class="area-title">PROTECCIÓN CIVIL</h3>
+                </a>
+                
+                <!-- Dirección Administración -->
+                <a href="direccion_administracion.html" class="area-container">
+                    <div class="area-item">
+                        <img src="{% static 'remtys/imagenes/ADMINISTRACION.png' %}" alt="Dirección Administración" class="area-image">
+                    </div>
+                    <h3 class="area-title">DIRECCIÓN ADMINISTRACIÓN</h3>
+                </a>
+                
+                <!-- Ordenamiento Territorial -->
+                <a href="ordenamiento_territorial.html" class="area-container">
+                    <div class="area-item">
+                        <img src="{% static 'remtys/imagenes/TERRITORIAL.png' %}" alt="Ordenamiento Territorial" class="area-image">
+                    </div>
+                    <h3 class="area-title">ORDENAMIENTO TERRITORIAL</h3>
+                </a>
+                
+                <!-- Secretaría del Ayuntamiento -->
+                <a href="secretaria_ayuntamiento.html" class="area-container">
+                    <div class="area-item">
+                        <img src="{% static 'remtys/imagenes/AYUNTAMIENTO.png' %}" alt="Secretaría del Ayuntamiento" class="area-image">
+                    </div>
+                    <h3 class="area-title">SECRETARÍA DEL AYUNTAMIENTO</h3>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Services section -->
+        <div class="gobierno-digital">
+            <h2>Gobierno</h2>
+            <h3>digital</h3>
+            
+            <div class="servicios-grid">
+                <!-- Bolsa de Trabajo -->
+                <div class="servicio-item">
+                    <div class="servicio-icon">
+                        <img src="{% static 'remtys/imagenes/BOLSA_DE_TRABAJO.png' %}" alt="Bolsa de Trabajo">
+                    </div>
+                    <h3 class="servicio-title">Bolsa de Trabajo</h3>
+                    <p class="servicio-description">La Bolsa de Trabajo tiene como objetivo vincular al ciudadano con diversas vacantes del sector empresarial</p>
+                    <a href="#" class="servicio-button">Encuentra oportunidades</a>
+                </div>
+                
+                <!-- Agenda tu Cita -->
+                <div class="servicio-item">
+                    <div class="servicio-icon">
+                        <img src="{% static 'remtys/imagenes/AGENDA_TU_CITA.png' %}" alt="Agenda tu Cita">
+                    </div>
+                    <h3 class="servicio-title">Agenda tu Cita</h3>
+                    <p class="servicio-description">Agenda tus citas en línea de manera rápida y segura, evita las filas y agiliza tu proceso</p>
+                    <a href="#" class="servicio-button">Agenda tu cita ahora</a>
+                </div>
+                
+                <!-- Mercado Digital -->
+                <div class="servicio-item">
+                    <div class="servicio-icon">
+                        <img src="{% static 'remtys/imagenes/MERCADO_DIGITAL.png' %}" alt="Mercado Digital">
+                    </div>
+                    <h3 class="servicio-title">Mercado Digital</h3>
+                    <p class="servicio-description">Apoya la economía atizapense, encuentra productos de nuestros comerciantes</p>
+                    <a href="#" class="servicio-button">Compra ahora</a>
+                </div>
+                
+                <!-- Atizapán te Escucha -->
+                <div class="servicio-item">
+                    <div class="servicio-icon">
+                        <img src="{% static 'remtys/imagenes/ATIZAPAN_TE_ESCUCHA.png' %}" alt="Atizapán te Escucha">
+                    </div>
+                    <h3 class="servicio-title">Atizapán te Escucha</h3>
+                    <p class="servicio-description">Ofrecemos atención personalizada para reportar servicios municipales</p>
+                    <a href="#" class="servicio-button">Atizapán te escucha</a>
+                </div>
+            </div>
+            
+            <div class="gradient-divider"></div>
+            
+            <div class="servicios-row-2">
+                <!-- REMTyS -->
+                <div class="servicio-item">
+                    <div class="servicio-icon">
+                        <img src="{% static 'remtys/imagenes/REMTYS.png' %}" alt="REMTyS">
+                    </div>
+                    <h3 class="servicio-title">REMTyS</h3>
+                    <p class="servicio-description">Conoce los trámites y/o servicios que ofrecemos para ti</p>
+                   <a href="{% url 'remtys' %}" class="servicio-button">Conoce tu trámite</a>
+
+
+                </div>
+                
+                <!-- Protesta Ciudadana -->
+                <div class="servicio-item">
+                    <div class="servicio-icon">
+                        <img src="{% static 'remtys/imagenes/PROTESTA_CIUDADANA.png' %}" alt="Protesta Ciudadana">
+                    </div>
+                    <h3 class="servicio-title">Protesta Ciudadana</h3>
+                    <p class="servicio-description">Ponemos a tu disposición una herramienta para que puedas hacer peticiones</p>
+                    <a href="#" class="servicio-button">Seguimiento a tu protesta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column footer-logo-column">
+                <img src="{% static 'remtys/imagenes/logoAtizapan.png' %}" alt="Logo Atizapán" class="footer-logo">
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Atizapán de Zaragoza</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Acerca del municipio</a></li>
+                    <li class="footer-link"><a href="#">Directorio</a></li>
+                    <li class="footer-link"><a href="#">Transparencia</a></li>
+                    <li class="footer-link"><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Servicios</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Trámites en línea</a></li>
+                    <li class="footer-link"><a href="#">Ventanilla única</a></li>
+                    <li class="footer-link"><a href="#">Atención ciudadana</a></li>
+                    <li class="footer-link"><a href="#">Pagos en línea</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Contáctanos</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><i class="fas fa-map-marker-alt"></i> Blvd. Adolfo López Mateos, Atizapán</li>
+                    <li class="footer-link"><i class="fas fa-phone"></i> (55) 1234-5678</li>
+                    <li class="footer-link"><i class="fas fa-envelope"></i> contacto@atizapan.gob.mx</li>
+                    <li class="footer-link"><i class="fas fa-clock"></i> Lun-Vie: 9:00 - 17:00</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 H. Ayuntamiento de Atizapán de Zaragoza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contraloría Municipal | Atizapán de Zaragoza</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'remtys/imagenes/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">  
+    <link rel="stylesheet" href="{% static 'tabla.css' %}"> 
+ 
+
+
+</head>
+<body>
+<!-- Header top bar -->
+<div class="header-top">
+    <div class="header-left">
+        <button class="location-btn">
+            <i class="fas fa-map-marker-alt"></i> Ubicación
+        </button>
+    </div>
+    <div class="header-right">
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Logo section -->
+<div class="logo-container">
+       <img src="{% static 'remtys/imagenes/logoAtizapan.png' %}" alt="Atizapán de Zaragoza" class="logo">
+</div>
+
+<!-- Gradient bar after logo -->
+<div class="gradient-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-section">
+        <h1 class="page-title">PROTECCION CIVIL</h1>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main-content">
+        <div class="controls-section">
+            <div class="left-controls">
+                <button class="control-btn" onclick="showRecords(10)">Mostrar 10 registros</button>
+                <button class="control-btn" onclick="copyTable()">Copiar Tabla</button>
+                <button class="control-btn" onclick="downloadCSV()">Descargar CSV</button>
+                <button class="control-btn" onclick="printTable()">Imprimir</button>
+            </div>
+            <div class="search-section">
+                <label for="search">Buscar:</label>
+                <input type="text" id="search" class="search-input" placeholder="Buscar registros..." oninput="filterTable()">
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table" id="dataTable">
+                <thead class="table-header">
+                    <tr>
+                        <th onclick="sortTable(0)">
+                            <span class="sort-icon">↕</span>
+                        </th>
+                        <th onclick="sortTable(1)">
+                            Nombre
+                            <span class="sort-icon">↕</span>
+                        </th>
+                        <th onclick="sortTable(2)">
+                            Descripción
+                            <span class="sort-icon">↕</span>
+                        </th>
+                        <th onclick="sortTable(3)">
+                            Estatus
+                            <span class="sort-icon">↕</span>
+                        </th>
+                        <th>Ver</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    {% for registro in registros %}
+                         <tr class="table-row">
+                            <td class="row-number">{{ forloop.counter }}</td>
+                            <td>{{ registro.nombre }}</td>
+                            <td>{{ registro.descripcion }}</td>
+                            <td><span class="status-badge">{{ registro.estatus }}</span></td>
+                            <td><button class="view-btn"><i class="fas fa-eye"></i></button></td>
+                        </tr>
+                   {% empty %}
+                     <tr>
+                       <td colspan="5">No hay registros.</td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination-section">
+            <div class="pagination-info">
+                Mostrando registros del 1 al 1 de un total de 1 registros
+            </div>
+            <div class="pagination-controls">
+                <button class="page-btn" disabled onclick="previousPage()">Anterior</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn" disabled onclick="nextPage()">Siguiente</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column footer-logo-column">
+               <img src="{% static 'remtys/imagenes/logoAtizapan.png' %}" alt="Logo Atizapán" class="footer-logo">
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Atizapán de Zaragoza</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Acerca del municipio</a></li>
+                    <li class="footer-link"><a href="#">Directorio</a></li>
+                    <li class="footer-link"><a href="#">Transparencia</a></li>
+                    <li class="footer-link"><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Servicios</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Trámites en línea</a></li>
+                    <li class="footer-link"><a href="#">Ventanilla única</a></li>
+                    <li class="footer-link"><a href="#">Atención ciudadana</a></li>
+                    <li class="footer-link"><a href="#">Pagos en línea</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Contáctanos</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#"><i class="fas fa-map-marker-alt"></i> Blvd. Adolfo López Mateos, Atizapán</a></li>
+                    <li class="footer-link"><a href="#"><i class="fas fa-phone"></i> (55) 1234-5678</a></li>
+                    <li class="footer-link"><a href="#"><i class="fas fa-envelope"></i> contacto@atizapan.gob.mx</a></li>
+                    <li class="footer-link"><a href="#"><i class="fas fa-clock"></i> Lun-Vie: 9:00 - 17:00</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 H. Ayuntamiento de Atizapán de Zaragoza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

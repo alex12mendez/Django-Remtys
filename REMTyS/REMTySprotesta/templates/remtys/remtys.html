@@ -1,0 +1,340 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Atizapán de Zaragoza</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'remtys/imagenes/favicon.png' %}">
+</head>
+<style>
+
+.login-btn {
+    background: linear-gradient(135deg, #2c5aa0, #1e3f73);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
+    white-space: nowrap;
+}
+.login-btn:hover {
+    background: linear-gradient(135deg, #1e3f73, #2c5aa0);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(44, 90, 160, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.login-btn i {
+    font-size: 14px;
+}
+
+</style>
+<body>
+    <!-- Header top bar -->
+    <div class="header-top">
+        <div class="header-left">
+            <button class="location-btn">
+                <i class="fas fa-map-marker-alt"></i> Ubicación
+            </button>
+        </div>
+        <div class="header-right">
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo section -->
+    <div class="logo-container">
+       <img src="{% static 'remtys/imagenes/logoAtizapan.png' %}" alt="Atizapán de Zaragoza" class="logo">
+    </div>
+    
+    
+    <!-- Gradient bar after logo -->
+    <div class="gradient-bar"></div>
+    
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Hero section -->
+        <div class="hero-section">
+            <div class="hero-header">
+                <div class="hero-texts">
+                    <h1 class="hero-title">BIENVENIDO A</h1>
+                    <h2 class="hero-subtitle">TRÁMITES Y SERVICIOS</h2>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Buscar trámite o servicio...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+
+        <!-- Separador creativo -->
+        <div class="creative-separator">
+        
+            <div class="wave-separator"></div>
+            <h2 class="separator-text">Selecciona el área que realiza tu trámite</h2>
+             </div>
+                <button class="login-btn">
+ {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="login-btn">
+        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+    </a>
+{% else %}
+
+{% endif %}
+                </button>
+            </div>
+        </div>
+
+        <div class="areas-section">
+
+
+    <div class="areas-grid">
+        <!-- Contraloría Municipal -->
+        <a href="{% url 'DOScontraloria_municipal' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconoscontraloriamunicipal.png' %}" alt="Contraloría Municipal" class="area-image">
+            </div>
+            <h3 class="area-title">CONTRALORÍA MUNICIPAL</h3>
+        </a>
+        
+        <!-- Protección Civil y Bomberos -->
+        <a href="{% url 'DOSproteccion_civil' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/BOMBEROS.png' %}" alt="Protección Civil" class="area-image">
+            </div>
+            <h3 class="area-title">PROTECCIÓN CIVIL Y BOMBEROS</h3>
+        </a>
+        
+        <!-- Derechos Humanos -->
+        <a href="{% url 'DOSderechos_humanos' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosderechoshumanos.png' %}" alt="Derechos Humanos" class="area-image">
+            </div>
+            <h3 class="area-title">DERECHOS HUMANOS</h3>
+        </a>
+        
+        <!-- DIF Municipal -->
+        <a href="{% url 'DOSdif_municipal' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosdif.png' %}" alt="DIF Municipal" class="area-image">
+            </div>
+            <h3 class="area-title">DIF MUNICIPAL</h3>
+        </a>
+        
+        <!-- Dirección Administración -->
+        <a href="{% url 'DOSdireccion_administracion' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/ADMINISTRACION.png' %}" alt="Dirección Administración" class="area-image">
+            </div>
+            <h3 class="area-title">DIRECCIÓN ADMINISTRACIÓN</h3>
+        </a>
+        
+        <!-- Desarrollo Económico -->
+        <a href="{% url 'DOSdesarrollo_economico' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/ECONOMICO.png' %}" alt="Desarrollo Económico" class="area-image">
+            </div>
+            <h3 class="area-title">DESARROLLO ECONÓMICO</h3>
+        </a>
+        
+        <!-- Desarrollo Social -->
+        <a href="{% url 'DOSdesarrollo_social' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/SOCIAL.png' %}" alt="Desarrollo Social" class="area-image">
+            </div>
+            <h3 class="area-title">DESARROLLO SOCIAL</h3>
+        </a>
+        
+        <!-- Atención Ciudadana -->
+        <a href="{% url 'DOSatencion_ciudadana' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosatencionciudadana.png' %}" alt="Atención Ciudadana" class="area-image">
+            </div>
+            <h3 class="area-title">ATENCIÓN CIUDADANA</h3>
+        </a>
+        
+        <!-- Jurídico y Consultivo -->
+        <a href="{% url 'DOSjuridico_consultivo' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosjuridico.png' %}" alt="Jurídico y Consultivo" class="area-image">
+            </div>
+            <h3 class="area-title">JURÍDICO Y CONSULTIVO</h3>
+        </a>
+        
+        <!-- Dirección de la Juventud -->
+        <a href="{% url 'DOSdireccion_juventud' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosjuventud.png' %}" alt="Dirección de la Juventud" class="area-image">
+            </div>
+            <h3 class="area-title">DIRECCIÓN DE LA JUVENTUD</h3>
+        </a>
+        
+        <!-- Obras Públicas -->
+        <a href="{% url 'DOSobras_publicas' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosobraspublicas.png' %}" alt="Obras Públicas" class="area-image">
+            </div>
+            <h3 class="area-title">OBRAS PÚBLICAS</h3>
+        </a>
+        
+        <!-- Ordenamiento Territorial y Desarrollo Urbano -->
+        <a href="{% url 'DOSordenamiento_territorial' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/TERRITORIAL.png' %}" alt="Ordenamiento Territorial" class="area-image">
+            </div>
+            <h3 class="area-title">ORDENAMIENTO TERRITORIAL Y DESARROLLO URBANO</h3>
+        </a>
+        
+        <!-- Seguridad Pública y Seguridad Vial -->
+        <a href="{% url 'DOSseguridad_publica' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosseguridadpublica.png' %}" alt="Seguridad Pública" class="area-image">
+            </div>
+            <h3 class="area-title">SEGURIDAD PÚBLICA Y SEGURIDAD VIAL</h3>
+        </a>
+        
+        <!-- Servicios Públicos -->
+        <a href="{% url 'DOSservicios_publicos' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/PUBLICOS.png' %}" alt="Servicios Públicos" class="area-image">
+            </div>
+            <h3 class="area-title">SERVICIOS PÚBLICOS</h3>
+        </a>
+        
+        <!-- Vinculación Ciudadana -->
+        <a href="{% url 'DOSvinculacion_ciudadana' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/vinculacionciudadana.png' %}" alt="Vinculación Ciudadana" class="area-image">
+            </div>
+            <h3 class="area-title">VINCULACIÓN CIUDADANA</h3>
+        </a>
+        
+        <!-- Dirección de las Mujeres -->
+        <a href="{% url 'DOSdireccion_mujeres' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosmujer.png' %}" alt="Dirección de las Mujeres" class="area-image">
+            </div>
+            <h3 class="area-title">DIRECCIÓN DE LAS MUJERES</h3>
+        </a>
+        
+        <!-- Primera Sindicatura -->
+        <a href="{% url 'DOSprimera_sindicatura' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconosprimerasindicatura.png' %}" alt="Primera Sindicatura" class="area-image">
+            </div>
+            <h3 class="area-title">PRIMERA SINDICATURA</h3>
+        </a>
+        
+        <!-- SAPASA -->
+        <a href="{% url 'DOSsapasa' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconossapasa.png' %}" alt="SAPASA" class="area-image">
+            </div>
+            <h3 class="area-title">SAPASA</h3>
+        </a>
+        
+        <!-- Secretaría del Ayuntamiento -->
+        <a href="{% url 'DOSsecretaria_ayuntamiento' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/AYUNTAMIENTO.png' %}" alt="Secretaría del Ayuntamiento" class="area-image">
+            </div>
+            <h3 class="area-title">SECRETARÍA DEL AYUNTAMIENTO</h3>
+        </a>
+        
+        <!-- Tesorería Municipal -->
+        <a href="{% url 'DOStesoreria_municipal' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconostesoreriamunicipal.png' %}" alt="Tesorería Municipal" class="area-image">
+            </div>
+            <h3 class="area-title">TESORERÍA MUNICIPAL</h3>
+        </a>
+        
+        <!-- Transparencia -->
+        <a href="{% url 'DOStransparencia' %}" class="area-container">
+            <div class="area-item">
+                <img src="{% static 'remtys/imagenes/salchichasiconostransparencia.png' %}" alt="Transparencia" class="area-image">
+            </div>
+            <h3 class="area-title">TRANSPARENCIA</h3>
+        </a>
+    </div>
+</div>
+        
+        <!-- Services section -->
+        <div class="gobierno-digital">
+            </div>       
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column footer-logo-column">
+                <img src="{% static 'remtys/imagenes/logoAtizapan.png' %}" alt="Logo Atizapán" class="footer-logo">
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer-social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Atizapán de Zaragoza</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Acerca del municipio</a></li>
+                    <li class="footer-link"><a href="#">Directorio</a></li>
+                    <li class="footer-link"><a href="#">Transparencia</a></li>
+                    <li class="footer-link"><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Servicios</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Trámites en línea</a></li>
+                    <li class="footer-link"><a href="#">Ventanilla única</a></li>
+                    <li class="footer-link"><a href="#">Atención ciudadana</a></li>
+                    <li class="footer-link"><a href="#">Pagos en línea</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 class="footer-title">Contáctanos</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><i class="fas fa-map-marker-alt"></i> Blvd. Adolfo López Mateos, Atizapán</li>
+                    <li class="footer-link"><i class="fas fa-phone"></i> (55) 1234-5678</li>
+                    <li class="footer-link"><i class="fas fa-envelope"></i> contacto@atizapan.gob.mx</li>
+                    <li class="footer-link"><i class="fas fa-clock"></i> Lun-Vie: 9:00 - 17:00</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 H. Ayuntamiento de Atizapán de Zaragoza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

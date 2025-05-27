@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventanilla Única | Atizapán de Zaragoza</title>
+    <link rel="stylesheet" href="{% static 'remtys/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="imagenes/favicon.png">
+</head>
+<style>
+    .tree-authorization-section {
+        padding: 60px 20px;
+        min-height: 80vh;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .content-left {
+        z-index: 2;
+        position: relative;
+    }
+
+    .section-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: 1.2;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: #718096;
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+
+    .accordion-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .accordion-item {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+    }
+
+    .accordion-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .accordion-item.active {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        border-color: #8b5cf6;
+    }
+
+    .accordion-header {
+        padding: 25px 30px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .accordion-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+    }
+
+    .accordion-item:nth-child(1) .accordion-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .accordion-item:nth-child(2) .accordion-header {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+    }
+
+    .accordion-item:nth-child(3) .accordion-header {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+    }
+
+    .accordion-item:nth-child(4) .accordion-header {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        color: white;
+    }
+
+    .accordion-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .accordion-icon {
+        font-size: 1.5rem;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        z-index: 2;
+    }
+
+    .accordion-item.active .accordion-icon {
+        transform: rotate(180deg);
+    }
+
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: white;
+    }
+
+    .accordion-item.active .accordion-content {
+        max-height: 500px;
+    }
+
+    .accordion-body {
+        padding: 30px;
+        color: #4a5568;
+        line-height: 1.8;
+        font-size: 1rem;
+    }
+
+    .content-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .image-container {
+        position: relative;
+        max-width: 350px;
+        width: 100%;
+    }
+
+    .main-image {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+    }
+
+    .main-image:hover {
+        transform: scale(1.05);
+    }
+
+    .floating-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+    }
+
+    .floating-icon {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .floating-icon:nth-child(1) {
+        top: 20px;
+        right: -20px;
+        animation-delay: 0s;
+        color: #667eea;
+    }
+
+    .floating-icon:nth-child(2) {
+        bottom: 60px;
+        left: -30px;
+        animation-delay: 1s;
+        color: #f093fb;
+    }
+
+    .floating-icon:nth-child(3) {
+        top: 50%;
+        right: -40px;
+        animation-delay: 2s;
+        color: #4facfe;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+
+    .background-decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .decoration-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+    }
+
+    .decoration-circle:nth-child(1) {
+        width: 300px;
+        height: 300px;
+        top: -150px;
+        right: -150px;
+    }
+
+    .decoration-circle:nth-child(2) {
+        width: 200px;
+        height: 200px;
+        bottom: -100px;
+        left: -50px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .section-container {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+        }
+
+        .accordion-header {
+            padding: 20px 25px;
+        }
+
+        .accordion-title {
+            font-size: 1rem;
+        }
+
+        .content-right {
+            order: -1;
+        }
+
+        .image-container {
+            max-width: 280px;
+        }
+
+        .floating-icon {
+            display: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .tree-authorization-section {
+            padding: 40px 15px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+        }
+
+        .accordion-header {
+            padding: 15px 20px;
+        }
+
+        .accordion-body {
+            padding: 20px;
+        }
+    }
+</style>
+<body>
+    <!-- Header top bar -->
+<div class="header-top">
+    <div class="header-left">
+        <button class="location-btn">
+            <i class="fas fa-map-marker-alt"></i> Ubicación
+        </button>
+    </div>
+    <div class="header-right">
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Logo section -->
+<div class="logo-container">
+    <img src="imagenes/logoAtizapan.png" alt="Atizapán de Zaragoza" class="logo">
+</div>
+
+<!-- Gradient bar after logo -->
+<div class="gradient-bar"></div>
+
+<!-- CONTENIDO AQUI -->
+
+
+
+<section class="tree-authorization-section">
+    <div class="background-decoration">
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+    </div>
+    
+    <div class="section-container">
+        <div class="content-left">
+            <h1 class="section-title">Autorización para la Poda de Árboles</h1>
+            <p class="section-subtitle">
+                Te compartimos la lista de documentos que necesitas para este trámite
+            </p>
+            
+            <div class="accordion-container">
+                <div class="accordion-item" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <span class="accordion-title">Información del Trámite</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Descripción del trámite:</strong> Consiste en obtener la autorización para realizar la poda de árboles en áreas públicas y privadas.</p>
+                            
+                            <h4>Criterios de resolución:</h4>
+                            <ul>
+                                <li>Estado Fitosanitario</li>
+                                <li>Restauración de la Estructura</li>
+                                <li>Afectación severa de infraestructura, equipamiento y servicios urbanos</li>
+                                <li>Mantenimiento</li>
+                                <li>Se otorga la Autorización para la Poda si cumple con todos los requisitos.</li>
+                                <li>No se otorga la autorización cuando derivado de la inspección física de o los árboles se observa que no es factible atender favorablemente la petición.</li>
+                            </ul>
+
+                            <h4>Casos en que debe de realizarse el trámite:</h4>
+                            <ul>
+                                <li>Cuando el árbol presente ramas muertas, plagadas o enfermas, plantas parásitas o trepadoras</li>
+                                <li>Cuando el árbol presente desmoche; por pérdida de estructura natural; cuando presente copa desbalanceada; follaje o crecimiento reprimido; con ramas desgarradas.</li>
+                                <li>Árboles que causan daños en infraestructura subterránea, aérea o en equipo urbano</li>
+                                <li>Eliminación de ramas que interfieran con el paso peatonal o vehicular; eliminación de ramas que entrecrucen su follaje con el de otros árboles y que obstruyan el desarrollo de uno o del otro, o ambos.</li>
+                                <li>Eliminación de ramas que interfieran con las líneas de conducción, luminarias o cámaras de vigilancia.</li>
+                            </ul>
+
+                            <p><strong>Vigencia del documento:</strong> 1 año calendario a partir de la fecha de expedición</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <span class="accordion-title">Requisitos para el Trámite</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                                
+                            <p>El trámite debe ser solicitado única y exclusivamente por el propietario del árbol o de los árboles (en caso de propiedad privada), cuando se trate de vía pública el árbol (les) deberá (n) estar frente a su domicilio.</p>
+                            
+                            <p>Cuando se trate de áreas verdes, camellones y andadores, el trámite lo podrá realizar el Consejo de Participación Ciudadana y/o Asociaciones de Colonos.</p>
+                            
+                            <p>En caso de tratarse Instituciones Educativas o Centros de Salud, el trámite podrá ser realizado por el Director.</p>
+                            
+                            <p><strong>Documentos requeridos:</strong></p>
+                            <ul style="margin: 15px 0; padding-left: 20px;">
+                                <li>Identificación oficial vigente del propietario (INE, pasaporte, cartilla del servicio militar)</li>
+                                <li>Comprobante de domicilio deberá ser boleta predial o recibo de agua.</li>
+                                <li>En caso de que el trámite sea realizado por el COPACI, deberá adjuntar su constancia.</li>
+                                <li>En caso de que el trámite sea realizado por Directores de centros educativos y de Salud, Presidentes de Asociaciones de Colonos, Representantes de Mesas Directivas, deberán anexar documento que acredite el cargo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <span class="accordion-title">Costos</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <ul style="margin: 15px 0; padding-left: 20px;">
+                                <li>Plazo máximo de respuesta: 15 días hábiles.</li>
+                                <li>El trámite no tiene costo</li>
+                            </ul>                      
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <span class="accordion-title">Fundamentos Jurídicos</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                           <ul style="margin: 15px 0; padding-left: 20px;">
+                                <li>Constitución Política de los Estados Unidos Mexicanos: Artículos 8 y 115 fracción II inciso a), y fracción III inciso h);</li>
+                                <li>Ley General del Equilibrio Ecológico y la Protección al Ambiente (LEGEEPA): Artículos 4 y 8 fracciones II, XVI y XVII;</li>
+                                <li>Ley General de Desarrollo Forestal Sustentable: Artículos 1, 13 fracción II, 21 fracción III y 30;</li>
+                                <li>Constitución Política del Estado Libre y Soberano de México: Artículos 122, 123 y 125;</li>
+                                <li>Ley Orgánica Municipal del Estado de México: Artículos 1, 2, 3, 31 fracciones IX y XXIII, 86, 87 fracción VIII, y 96 Octies;</li>
+                                <li>Código para la Biodiversidad del Estado de México: Libro Primero, Título Primero, Artículos I.1, I.2, I.4; Título Segundo, Artículos I.5, I.6 fracción I; Libro Segundo, Título Primero, Capítulo II, Artículos 2.6 fracciones III y V; y Capítulo IV, Artículo 2.9;</li>
+                                <li>Código Administrativo del Estado de México: Artículos 1.5 fracción III, 1.7, 1.8 y 1.9;</li>
+                                <li>Norma Técnica Estatal Ambiental NTEA-018-SeMaGEM-DS-2017, Numerales 2., 4.5, 4.16, 4.27, 5.3, 5.5, 5.7, 7.1.7, 7.3.8, 8.1, 8.4, 9, 10, 10.1, 10.21, inciso b);</li>
+                                <li>Norma Técnica Ambiental Estatal NTEA-019-SeMaGEM-DS-2017, Numerales 2., 3., 6. y 7.;</li>
+                                <li>Reglamento Orgánico de la Administración Pública Municipal de Atizapán de Zaragoza 2022-2024: Artículos 21 fracción I, XIV, 84, 86 fracción XXIX y 87 fracción IV.I;</li>
+                                <li>Reglamento para la Biodiversidad y Desarrollo Sostenible del Municipio de Atizapán de Zaragoza: Artículos 7 Bis fracción XI, 70 al 74;</li>
+                                <li>Bando Municipal de Atizapán de Zaragoza 2024: Artículos 36 fracción X, 84 fracción IX, 93 fracción I y 95 fracción III.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-right">
+            <div class="image-container">
+                <img src="imagenes/ArbolesSeñora.PNG" alt="" class="main-image">
+                <div class="floating-elements">
+                    <div class="floating-icon">
+                        <i class="fas fa-tree" style="font-size: 24px;"></i>
+                    </div>
+                    <div class="floating-icon">
+                        <i class="fas fa-file-alt" style="font-size: 24px;"></i>
+                    </div>
+                    <div class="floating-icon">
+                        <i class="fas fa-check-circle" style="font-size: 24px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- CONTENIDO AQUI -->
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-column footer-logo-column">
+            <img src="imagenes/logoAtizapan.png" alt="Logo Atizapán" class="footer-logo">
+            <!-- Nuevos íconos de redes sociales -->
+            <div class="footer-socials">
+                <a href="#" class="footer-social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="footer-social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="footer-social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="footer-social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-column">
+            <h3 class="footer-title">Atizapán de Zaragoza</h3>
+            <ul class="footer-links">
+                <li class="footer-link"><a href="#">Acerca del municipio</a></li>
+                <li class="footer-link"><a href="#">Directorio</a></li>
+                <li class="footer-link"><a href="#">Transparencia</a></li>
+                <li class="footer-link"><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3 class="footer-title">Servicios</h3>
+            <ul class="footer-links">
+                <li class="footer-link"><a href="#">Trámites en línea</a></li>
+                <li class="footer-link"><a href="#">Ventanilla única</a></li>
+                <li class="footer-link"><a href="#">Atención ciudadana</a></li>
+                <li class="footer-link"><a href="#">Pagos en línea</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3 class="footer-title">Contáctanos</h3>
+            <ul class="footer-links">
+                <li class="footer-link"><i class="fas fa-map-marker-alt"></i> Blvd. Adolfo López Mateos, Atizapán</li>
+                <li class="footer-link"><i class="fas fa-phone"></i> (55) 1234-5678</li>
+                <li class="footer-link"><i class="fas fa-envelope"></i> contacto@atizapan.gob.mx</li>
+                <li class="footer-link"><i class="fas fa-clock"></i> Lun-Vie: 9:00 - 17:00</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 H. Ayuntamiento de Atizapán de Zaragoza. Todos los derechos reservados.</p>
+    </div>
+</footer>
+<script>
+    function toggleAccordion(element) {
+        const allItems = document.querySelectorAll('.accordion-item');
+        const isActive = element.classList.contains('active');
+        
+        // Cerrar todos los acordeones
+        allItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Si no estaba activo, activar el seleccionado
+        if (!isActive) {
+            element.classList.add('active');
+        }
+    }
+
+    // Animación de entrada para los elementos
+    document.addEventListener('DOMContentLoaded', function() {
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100);
+            }, index * 150);
+        });
+    });
+</script>
+
+
+</body>
