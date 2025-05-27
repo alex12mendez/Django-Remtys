@@ -41,7 +41,8 @@ LOGGING = {
     },
 }
 
-ALLOWED_HOSTS = ['localhost','web-production-17d9.up.railway.app', ]
+ALLOWED_HOSTS = ['localhost', 'django-remtys-production.up.railway.app']
+
 
 
 # Application definition
