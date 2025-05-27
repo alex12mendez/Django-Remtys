@@ -95,14 +95,15 @@ WSGI_APPLICATION = 'REMTyS.wsgi.application'
 # --- DATABASE CONFIGURATION (Only one definition) ---
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # This will use MySQL
-        'NAME': 'contraloria_municipal',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',  # o el nombre real de la base en Railway si es distinto
         'USER': 'root',
-        'PASSWORD':'12345678',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'PASSWORD': 'VNihdQINuLFSMHavAVoBQHoKozYyMfiy',  # la que Railway te dio
+        'HOST': 'nozomi.proxy.rlwy.net',
+        'PORT': '41237',
     }
 }
+
 
 
 # Password validation
