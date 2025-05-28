@@ -16,6 +16,39 @@
 </head>
 <style>
 
+.login-btn {
+    background: linear-gradient(135deg, #2c5aa0, #1e3f73);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
+    white-space: nowrap;
+}
+.login-btn:hover {
+    background: linear-gradient(135deg, #1e3f73, #2c5aa0);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(44, 90, 160, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.login-btn i {
+    font-size: 14px;
+}
+
+</style>
+<style>
+
 
 .edit-btn,
 .delete-btn {
@@ -82,7 +115,17 @@
     <nav class="nav-section">
         <h1 class="page-title">CONTRALORÍA MUNICIPAL</h1>
     </nav>
+             </div>
+                <button class="login-btn">
+                    {% if user.is_authenticated %}
+                 <a href="{% url 'logout' %}" class="login-btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                     </a>
+                {% else %}
 
+                  {% endif %}
+                </button>
+            </div>
     <!-- Main content -->
     <main class="main-content">
         <div class="controls-section">
@@ -162,57 +205,6 @@
     </table>
 </div>
 
-<script>
-// JavaScript para manejar los eventos
-document.addEventListener('DOMContentLoaded', function() {
-    // Botones de ver
-    const viewButtons = document.querySelectorAll('.view-btn');
-    viewButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const id = this.getAttribute('data-id');
-            viewRecord(id);
-        });
-    });
-
-    // Botones de editar
-    const editButtons = document.querySelectorAll('.edit-btn');
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const id = this.getAttribute('data-id');
-            editRecord(id);
-        });
-    });
-
-    // Botones de eliminar
-    const deleteButtons = document.querySelectorAll('.delete-btn');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const id = this.getAttribute('data-id');
-            deleteRecord(id);
-        });
-    });
-});
-
-function viewRecord(id) {
-    console.log('Viendo registro:', id);
-    // Aquí puedes redirigir o abrir modal
-    // window.location.href = `/registro/${id}/`;
-}
-
-function editRecord(id) {
-    console.log('Editando registro:', id);
-    // Aquí puedes redirigir a página de edición
-    // window.location.href = `/registro/${id}/edit/`;
-}
-
-function deleteRecord(id) {
-    if (confirm('¿Estás seguro de que quieres eliminar este registro?')) {
-        console.log('Eliminando registro:', id);
-        // Aquí puedes hacer petición AJAX
-        // fetch(`/registro/${id}/delete/`, {method: 'DELETE'})...
-    }
-}
-</script>
 
         <div class="pagination-section">
             <div class="pagination-info">

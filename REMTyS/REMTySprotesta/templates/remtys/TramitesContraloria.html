@@ -15,6 +15,388 @@
 
 </head>
 <style>
+    .section-title::before {
+            content: "💰";
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .payment-title {
+            font-size: 1.8rem;
+            color: #27ae60;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #27ae60;
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-title::before {
+            content: "💳";
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+        }
+
+        th {
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .amount-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .currency {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: normal;
+        }
+
+        .na-text {
+            color: #95a5a6;
+            font-style: italic;
+        }
+
+        .payment-options {
+            background: linear-gradient(135deg, #e8f5e8, #f0fff0);
+            border-left: 4px solid #27ae60;
+            padding: 30px;
+            border-radius: 0 10px 10px 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .payment-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #27ae60;
+        }
+
+        .payment-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .payment-description {
+            color: #7f8c8d;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border: 2px solid #27ae60;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.1);
+        }
+
+        .highlight-card h4 {
+            color: #27ae60;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .highlight-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title, .payment-title {
+                font-size: 1.5rem;
+            }
+
+            .amount-display {
+                font-size: 1.2rem;
+            }
+
+            .payment-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        .info-banner {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .info-banner h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .info-banner p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: "👥";
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+        }
+
+        th {
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+            transition: background-color 0.3s ease;
+        }
+
+        .tipo-requisito {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tipo-accion {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .tipo-documento {
+            background-color: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .original-badge, .copia-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 40px;
+        }
+
+        .original-badge {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .copia-badge {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .na-badge {
+            background-color: #f5f5f5;
+            color: #757575;
+        }
+
+        .description {
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            color: #1976d2;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .info-box h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -259,68 +641,331 @@
             </div>
 
             <div class="main-content">
-                <table class="form-table">
-                    <tr>
-                        <td>TIPO</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Unidad Administrativa:</td>
-                        <td>Órgano Interno de Control Municipal.</td>
-                    </tr>
-                    <tr>
-                        <td>Descripción del Trámite/Servicio:</td>
-                        <td>Recibir, tramitar, integrar, investigar y dar seguimiento de las denuncias en contra de servidores públicos municipales y/o particulares en situaciones previstas en la normatividad aplicable, por acciones y/u omisiones cometidas en el ejercicio de sus funciones como servidores públicos y/o prestadores de algún servicio.</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre por Normatividad:</td>
-                        <td>Constitución Política de los Estados Unidos Mexicanos, artículos 108, 109, 113 y 115; artículos 130 y 130 bis de la Constitución Política del Estado Libre y Soberano de México; Ley Orgánica Municipal del Estado de México, artículo 112 fracciones X y XVII; Ley de Responsabilidades Administrativas del Estado de México y Municipios, artículos 1, 7, 95 fracción II, 96 y 97; Bando Municipal de Atizapán de Zaragoza artículo 54; Reglamento Orgánico de la Administración Pública Municipal de Atizapán de Zaragoza, Estado de México, artículos 45, 46 fracción XXII, 47 fracción III y 67 bis, inciso B.</td>
-                    </tr>
-                    <tr>
-                        <td>Clasificación:</td>
-                        <td>Servicio</td>
-                    </tr>
-                    <tr>
-                        <td>Medio(s) para presentar el Trámite/Servicio:</td>
-                        <td>
-                            - PRESENCIAL<br>
-                            - TELEFÓNICO<br>
-                            - EN LÍNEA<br>
-                            - ESCRITO
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Documento a obtener en caso de ser aprobatorio:</td>
-                        <td>Folio de denuncia.</td>
-                    </tr>
-                    <tr>
-                        <td>Criterios de resolución:</td>
-                        <td>En términos de los artículos 15 y 97 de la Ley de Responsabilidades Administrativas del Estado de México y Municipios.</td>
-                    </tr>
-                    <tr>
-                        <td>Requiere Inspección o Verificación:</td>
-                        <td>No</td>
-                    </tr>
-                    <tr>
-                        <td>Objetivo de la Inspección o Verificación:</td>
-                        <td>NA</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+                <div class="section" id="informacion-tramite">
+                    <h2 class="section-title">Información del Trámite</h2>
+                    
+                    <table class="form-table">
+                        <tr>
+                            <td>TIPO</td>
+                            <td><span class="highlight">Servicio Ciudadano</span></td>
+                        </tr>
+                        <tr>
+                            <td>Unidad Administrativa:</td>
+                            <td><strong>Órgano Interno de Control Municipal.</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Descripción del Trámite/Servicio:</td>
+                            <td>Recibir, tramitar, integrar, investigar y dar seguimiento de las denuncias en contra de servidores públicos municipales y/o particulares en situaciones previstas en la normatividad aplicable, por acciones y/u omisiones cometidas en el ejercicio de sus funciones como servidores públicos y/o prestadores de algún servicio.</td>
+                        </tr>
+                        <tr>
+                            <td>Clasificación:</td>
+                            <td><span class="badge badge-online">Servicio</span></td>
+                        </tr>
+                        <tr>
+                            <td>Medio(s) para presentar el Trámite/Servicio:</td>
+                            <td>
+                                <div class="medios-container">
+                                    <span class="badge badge-presencial">PRESENCIAL</span>
+                                    <span class="badge badge-telefonico">TELEFÓNICO</span>
+                                    <span class="badge badge-online">EN LÍNEA</span>
+                                    <span class="badge badge-escrito">ESCRITO</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Documento a obtener:</td>
+                            <td><strong>Folio de denuncia</strong> (en caso de ser aprobatorio)</td>
+                        </tr>
+                        <tr>
+                            <td>Criterios de resolución:</td>
+                            <td>En términos de los <span class="highlight">artículos 15 y 97 de la Ley de Responsabilidades Administrativas del Estado de México y Municipios.</span></td>
+                        </tr>
+                        <tr>
+                            <td>Requiere Inspección o Verificación:</td>
+                            <td><span class="badge" style="background-color: #ffebee; color: #c62828;">No</span></td>
+                        </tr>
+                        <tr>
+                            <td>Objetivo de la Inspección o Verificación:</td>
+                            <td><span style="color: #757575;">N/A</span></td>
+                        </tr>
+                    </table>
+                </div>
 
         <!-- Secciones adicionales -->
         <div class="section" id="modalidades-requisitos">
             <h2 class="section-title">Modalidades y Requisitos</h2>
-            <div class="main-content">
-                <p>Información sobre las modalidades y requisitos para presentar la denuncia ciudadana.</p>
+            <div class="container">
+        
+
+        <div class="content">
+
+            <!-- PERSONAS FÍSICAS -->
+            <div class="section">
+                <h2 class="section-title">Personas Físicas</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">Descripción</th>
+                                <th style="width: 20%;">Tipo Requisito</th>
+                                <th style="width: 15%;">Original</th>
+                                <th style="width: 15%;">Copia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="description">
+                                    <strong> Presencial:</strong> En las oficinas del Órgano Interno de Control Municipal ubicadas en el <span class="highlight">Blvd. Adolfo López Mateos 91, primer piso, El Potrero, Atizapán de Zaragoza</span>
+                                </td>
+                                <td><span class="tipo-requisito tipo-accion">ACCIÓN</span></td>
+                                <td><span class="original-badge na-badge">0</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">1. Presentar una <strong>identificación oficial con fotografía vigente</strong></td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">2. Llenar el <strong>formato establecido</strong> entregado por el personal de la dependencia, firmarlo y ratificarlo con su puño y letra</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">
+                                    <strong>Escrito:</strong> En un formato libre ingresado por medio de la <span class="highlight">Oficialía Común de Partes</span>, el cual deberá contener como requisitos mínimos:
+                                </td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">1. <strong>Nombre del denunciante</strong></td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">2. <strong>Número telefónico</strong></td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">3. <strong>Domicilio para oír y recibir notificaciones</strong> dentro del territorio municipal o en su caso autorizar un correo electrónico o señalar los estrados de la Contraloría Municipal</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">4. Realizar una <strong>descripción breve de los hechos</strong>, señalar al presunto responsable (si no se cuenta con el nombre, por lo menos el área de adscripción), citar la fecha, hora y lugar de las acciones y/u omisiones cometidas</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">5. En caso de contar con <strong>pruebas</strong>, mencionarlas y anexar copia simple cuando se trate de documentos, en caso de ser archivos digitales y/o audios, describir en qué consisten</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge">copia de pruebas</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">
+                                    <strong>Vía telefónica:</strong> Se recibe la llamada al número: <span class="contact-info">55 36 22 27 00 extensión 2721</span>
+                                </td>
+                                <td><span class="tipo-requisito tipo-accion">ACCIÓN</span></td>
+                                <td><span class="original-badge na-badge">0</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">2. Se debe proporcionar <strong>nombre, domicilio, número telefónico</strong>, dar una breve descripción de los hechos ubicando fecha, hora, lugar y la presunta acción y/u omisión cometida</td>
+                                <td><span class="tipo-requisito tipo-accion">ACCIÓN</span></td>
+                                <td><span class="original-badge na-badge">0</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">
+                                    <strong>Mediante la aplicación móvil "Atizapán te escucha":</strong><br>
+                                    Se accede mediante la liga: <span class="contact-info">https://www.atizapan.gob.mx/atizapanteescucha/</span><br>
+                                    Teniendo dos opciones de registro
+                                </td>
+                                <td><span class="tipo-requisito tipo-accion">ACCIÓN</span></td>
+                                <td><span class="original-badge na-badge">0</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PERSONAS JURÍDICO COLECTIVAS -->
+            <div class="section">
+                <h2 class="section-title" style="color: #e74c3c;">Personas Jurídico Colectivas</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">Descripción</th>
+                                <th style="width: 20%;">Tipo Requisito</th>
+                                <th style="width: 15%;">Original</th>
+                                <th style="width: 15%;">Copia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="description">
+                                    <strong>Presencial:</strong> En las oficinas del Órgano Interno de Control Municipal ubicadas en el <span class="highlight">Blvd. Adolfo López Mateos 91, primer piso, El Potrero, Atizapán de Zaragoza</span>
+                                </td>
+                                <td><span class="tipo-requisito tipo-accion">ACCIÓN</span></td>
+                                <td><span class="original-badge na-badge">0</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">1. Presentar una <strong>identificación oficial con fotografía vigente</strong></td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">2. Presentar <strong>copia simple certificada del acta constitutiva</strong> de la persona jurídica colectiva que representa, previo cotejo con el original, y documento que acredite la personalidad con que se ostenta para actuar</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge na-badge">0</span></td>
+                                <td><span class="copia-badge">simple</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">3. Llenar el <strong>formato establecido</strong> entregado por el personal de la dependencia, firmarlo y ratificarlo con su puño y letra</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- INSTITUCIONES PÚBLICAS -->
+            <div class="section">
+                <h2 class="section-title" style="color: #27ae60;">Instituciones Públicas</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">Descripción</th>
+                                <th style="width: 20%;">Tipo Requisito</th>
+                                <th style="width: 15%;">Original</th>
+                                <th style="width: 15%;">Copia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="description">
+                                    <strong>Escrito:</strong> En un formato libre ingresado por medio de la <span class="highlight">Oficialía de partes común</span>, el cual deberá contener como requisitos mínimos:
+                                </td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">1. <strong>Nombre del denunciante</strong></td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">2. <strong>Número telefónico</strong></td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">3. <strong>Domicilio para oír y recibir notificaciones</strong> dentro del territorio municipal o en su caso autorizar un correo electrónico o señalar los estrados del Órgano Interno de Control Municipal</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">4. Realizar una <strong>descripción breve de los hechos</strong>, señalar al presunto responsable (si no se cuenta con el nombre, por lo menos el área de adscripción) y ubicar la fecha, hora y lugar de las acciones y/u omisiones cometidas</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">5. En caso de contar con <strong>pruebas</strong>, mencionarlas y anexar copia simple cuando se trate de documentos, en caso de ser archivos digitales y/o audios, describir en qué consisten</td>
+                                <td><span class="tipo-requisito tipo-documento">DOCUMENTO</span></td>
+                                <td><span class="original-badge">1</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="description">
+                                    <strong>Vía telefónica:</strong> Se recibe la llamada al número: <span class="contact-info">55 36 22 27 00 extensión 2721</span>
+                                </td>
+                                <td><span class="tipo-requisito tipo-accion">ACCIÓN</span></td>
+                                <td><span class="original-badge na-badge">0</span></td>
+                                <td><span class="copia-badge na-badge">N/A</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
         <div class="section" id="costos">
             <h2 class="section-title">Costos</h2>
-            <div class="main-content">
-                <p>El servicio es gratuito. No tiene costo alguno para el ciudadano.</p>
+            <div class="container">
+        
+
+        <div class="content">
+            
+
+            <div class="section">
+                <h2 class="section-title">Desglose de Costos</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Concepto</th>
+                                <th>Importe</th>
+                                <th>Unidad Valor</th>
+                                <th>Fundamento Jurídico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="na-text">No aplica</td>
+                                <td>
+                                    <span class="amount-display">$0.00</span>
+                                    <span class="currency">MXN</span>
+                                </td>
+                                <td><strong>PESOS</strong></td>
+                                <td class="na-text">No aplica</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="payment-title">Opciones de Pago</h2>
+                
+                <div class="payment-options">
+                
+                    <div class="payment-text">GRATUITO</div>
+                    <div class="payment-description">
+                        Este servicio no requiere ningún tipo de pago o arancel.<br>
+                        El acceso es completamente libre para todos los ciudadanos.
+                    </div>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="icon">✅</div>
+                    <h4>Servicio sin Costo</h4>
+                    <p>La presentación de denuncias ciudadanas es un derecho fundamental que no genera ningún costo económico para el denunciante.</p>
+                </div>
             </div>
         </div>
 
@@ -358,6 +1003,7 @@
                 <p>Ubicación y horarios de las oficinas donde se puede realizar este trámite.</p>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>

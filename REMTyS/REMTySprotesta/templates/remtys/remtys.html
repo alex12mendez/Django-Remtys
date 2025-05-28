@@ -99,13 +99,13 @@
             <h2 class="separator-text">Selecciona el área que realiza tu trámite</h2>
              </div>
                 <button class="login-btn">
- {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="login-btn">
-        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-    </a>
-{% else %}
+                    {% if user.is_authenticated %}
+                 <a href="{% url 'logout' %}" class="login-btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                     </a>
+                {% else %}
 
-{% endif %}
+                  {% endif %}
                 </button>
             </div>
         </div>

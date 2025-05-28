@@ -32,25 +32,25 @@ from REMTySprotesta.models import (
 
 )
 
-def login_view(request): 
-    if request.method =='POST': 
-        username = request .POST.get('username') 
-        password = request.POST.get('password') 
-        user = authenticate(request, username=username, password=password) 
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
 
-        if user is not None: 
-            login(request, user) 
-            return redirect('remtys') 
+        if user is not None:
+            login(request, user)
+            # Change the redirect destination here:
+            return redirect('DOScontraloria_municipal') # <-- This is the change!
 
-        else: 
-            messages.error(request, 'Usuario o contrasefia incorrecto') 
+        else:
+            messages.error(request, 'Usuario o contraseña incorrecto')
 
-    return render(request, 'remtys/login.html',      
-)
+    return render(request, 'remtys/login.html')  
     
 def logout_view(request):
     logout(request)
-    return redirect('remtys') 
+    return redirect('DOScontraloria_municipal') 
     
 def contraloria(request):
     registros = RegistroContraloria.objects.all()
