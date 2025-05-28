@@ -10,8 +10,6 @@ urlpatterns = [
     path('', views.remtys, name='inicio'),
   #  path('remtys/', views.remtys, name='remtys'),
     path('DOSatencion_ciudadana/', views.atencion, name='DOSatencion_ciudadana'),
-
-
     path('DOScontraloria_municipal/', views.contraloria, name='DOScontraloria_municipal'),
     path('DOSproteccion_civil/', views.proteccion_civil, name='DOSproteccion_civil'),
     path('DOSderechos_humanos/', views.derechos_humanos, name='DOSderechos_humanos'),
@@ -35,4 +33,8 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('home/', views.remtys, name='home'),
+    
+    
+    
+    path('TramitesContraloria/', views.TramitContraloria, name='TramitesContraloria'),
 ]

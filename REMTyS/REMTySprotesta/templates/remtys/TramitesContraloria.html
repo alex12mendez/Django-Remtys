@@ -1,0 +1,363 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contraloría Municipal | Atizapán de Zaragoza</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'remtys/imagenes/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">  
+    <link rel="stylesheet" href="{% static 'tabla.css' %}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="{% static 'table.js' %}"></script>
+
+
+</head>
+<style>
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .complaint-header {
+            text-align: center;
+            color: #6c757d;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .content-wrapper {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .sidebar {
+            flex: 0 0 250px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .sidebar-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-menu a:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section styling for anchor links */
+        .section {
+            padding-top: 80px;
+            margin-top: -80px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8e44ad;
+        }
+
+        .main-content {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .form-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .form-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+
+        .form-table td:first-child {
+            font-weight: 600;
+            color: #495057;
+            width: 200px;
+            background-color: #e9ecef;
+        }
+
+        .form-table tr:nth-child(even) td:first-child {
+            background-color: #dee2e6;
+        }
+
+        .form-table td:last-child {
+            color: #212529;
+            line-height: 1.5;
+        }
+
+        .protest-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .protest-logo {
+            background: linear-gradient(135deg, #8e44ad, #3498db, #e74c3c);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .protest-description {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #495057;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .protest-btn {
+            background: linear-gradient(135deg, #8e44ad, #e74c3c);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
+        }
+
+        .protest-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                flex: none;
+                width: 100%;
+            }
+            
+            .form-table td:first-child {
+                width: auto;
+            }
+        }
+    </style>
+<body>
+<!-- Header top bar -->
+<div class="header-top">
+    <div class="header-left">
+        <button class="location-btn">
+            <i class="fas fa-map-marker-alt"></i> Ubicación
+        </button>
+    </div>
+    <div class="header-right">
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Logo section -->
+<div class="logo-container">
+       <img src="{% static 'remtys/imagenes/logoAtizapan.png' %}" alt="Atizapán de Zaragoza" class="logo">
+</div>
+
+<!-- Gradient bar after logo -->
+<div class="gradient-bar"></div>
+
+
+
+
+
+
+
+
+
+  <div class="main-container">
+        <h1 class="complaint-header">
+            Denuncia Ciudadana por escrito, vía telefónica, presencial y en línea ante el Órgano Interno de Control Municipal (Subdirección Investigadora)
+        </h1>
+
+        <div class="content-wrapper">
+            <div class="sidebar">
+                <div class="protest-section">
+                    <div class="protest-logo">
+                        PROTESTA<br>CIUDADANA
+                    </div>
+                    <div class="protest-description">
+                        Es una Herramienta Ciudadana que se pone a tu disposición para que puedas hacer peticiones y/o inconformarte por presuntas negativas y/o falta de respuesta en solicitudes de trámites y/o servicios previstos en la normatividad aplicable, en términos de lo dispuesto por la Ley de Mejora Regulatoria del Estado de México y sus Municipios.
+                    </div>
+                    <button class="protest-btn">PRESENTAR PROTESTA</button>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li><a href="#informacion-tramite">Información del Trámite</a></li>
+                    <li><a href="#modalidades-requisitos">Modalidades y Requisitos</a></li>
+                    <li><a href="#costos">Costos</a></li>
+                    <li><a href="#fundamento-juridico">Fundamento Jurídico</a></li>
+                    <li><a href="#archivos-anexos">Archivos Anexos</a></li>
+                    <li><a href="#informacion-adicional">Información adicional</a></li>
+                    <li><a href="#tramites-relacionados">Trámites Relacionados</a></li>
+                    <li><a href="#oficinas-atencion">Oficinas de atención</a></li>
+                </ul>
+            </div>
+
+            <div class="main-content">
+                <table class="form-table">
+                    <tr>
+                        <td>TIPO</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Unidad Administrativa:</td>
+                        <td>Órgano Interno de Control Municipal.</td>
+                    </tr>
+                    <tr>
+                        <td>Descripción del Trámite/Servicio:</td>
+                        <td>Recibir, tramitar, integrar, investigar y dar seguimiento de las denuncias en contra de servidores públicos municipales y/o particulares en situaciones previstas en la normatividad aplicable, por acciones y/u omisiones cometidas en el ejercicio de sus funciones como servidores públicos y/o prestadores de algún servicio.</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre por Normatividad:</td>
+                        <td>Constitución Política de los Estados Unidos Mexicanos, artículos 108, 109, 113 y 115; artículos 130 y 130 bis de la Constitución Política del Estado Libre y Soberano de México; Ley Orgánica Municipal del Estado de México, artículo 112 fracciones X y XVII; Ley de Responsabilidades Administrativas del Estado de México y Municipios, artículos 1, 7, 95 fracción II, 96 y 97; Bando Municipal de Atizapán de Zaragoza artículo 54; Reglamento Orgánico de la Administración Pública Municipal de Atizapán de Zaragoza, Estado de México, artículos 45, 46 fracción XXII, 47 fracción III y 67 bis, inciso B.</td>
+                    </tr>
+                    <tr>
+                        <td>Clasificación:</td>
+                        <td>Servicio</td>
+                    </tr>
+                    <tr>
+                        <td>Medio(s) para presentar el Trámite/Servicio:</td>
+                        <td>
+                            - PRESENCIAL<br>
+                            - TELEFÓNICO<br>
+                            - EN LÍNEA<br>
+                            - ESCRITO
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Documento a obtener en caso de ser aprobatorio:</td>
+                        <td>Folio de denuncia.</td>
+                    </tr>
+                    <tr>
+                        <td>Criterios de resolución:</td>
+                        <td>En términos de los artículos 15 y 97 de la Ley de Responsabilidades Administrativas del Estado de México y Municipios.</td>
+                    </tr>
+                    <tr>
+                        <td>Requiere Inspección o Verificación:</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Objetivo de la Inspección o Verificación:</td>
+                        <td>NA</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Secciones adicionales -->
+        <div class="section" id="modalidades-requisitos">
+            <h2 class="section-title">Modalidades y Requisitos</h2>
+            <div class="main-content">
+                <p>Información sobre las modalidades y requisitos para presentar la denuncia ciudadana.</p>
+            </div>
+        </div>
+
+        <div class="section" id="costos">
+            <h2 class="section-title">Costos</h2>
+            <div class="main-content">
+                <p>El servicio es gratuito. No tiene costo alguno para el ciudadano.</p>
+            </div>
+        </div>
+
+        <div class="section" id="fundamento-juridico">
+            <h2 class="section-title">Fundamento Jurídico</h2>
+            <div class="main-content">
+                <p>Base legal y normativa que sustenta este trámite y servicio.</p>
+            </div>
+        </div>
+
+        <div class="section" id="archivos-anexos">
+            <h2 class="section-title">Archivos Anexos</h2>
+            <div class="main-content">
+                <p>Documentos y formatos relacionados con el trámite.</p>
+            </div>
+        </div>
+
+        <div class="section" id="informacion-adicional">
+            <h2 class="section-title">Información Adicional</h2>
+            <div class="main-content">
+                <p>Datos complementarios sobre el proceso y procedimientos.</p>
+            </div>
+        </div>
+
+        <div class="section" id="tramites-relacionados">
+            <h2 class="section-title">Trámites Relacionados</h2>
+            <div class="main-content">
+                <p>Otros servicios y trámites relacionados con la contraloría municipal.</p>
+            </div>
+        </div>
+
+        <div class="section" id="oficinas-atencion">
+            <h2 class="section-title">Oficinas de Atención</h2>
+            <div class="main-content">
+                <p>Ubicación y horarios de las oficinas donde se puede realizar este trámite.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

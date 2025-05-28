@@ -133,7 +133,9 @@
                 <td><span class="status-badge">{{ registro.estatus }}</span></td>
                 <td>
                     <button class="view-btn" data-id="{{ registro.id }}">
-                        <i class="fas fa-eye"></i>
+                    <a href="{% url 'TramitesContraloria' %}" class="view-btn">
+                    <i class="fas fa-eye"></i>
+                    </a>
                     </button>
                 </td>
                 {% if user.is_authenticated %}

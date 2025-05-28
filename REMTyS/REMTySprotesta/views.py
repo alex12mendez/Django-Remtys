@@ -29,7 +29,7 @@ from REMTySprotesta.models import (
     RegistroTesoreriaMunicipal,
     RegistroTransparencia,
     RegistroVinculacionCiudadana,
-    # ...agrega los demás modelos aquí...
+
 )
 
 def login_view(request): 
@@ -149,3 +149,18 @@ def transparencia(request):
 def vinculacion_ciudadana(request):
     registros = RegistroVinculacionCiudadana.objects.all()
     return render(request, 'remtys/DOSvinculacion_ciudadana.html', {'registros': registros})
+
+
+
+
+
+
+
+
+
+    # TABLAS, CEDULAS Y VISTAS
+def TramitContraloria(request):
+   
+    return render(request, 'remtys/TramitesContraloria.html')
+    
+    
