@@ -1,1 +1,1 @@
-web: gunicorn REMTyS.wsgi --bind 0.0.0.0:$PORT
+#SDFFDSFDweb: gunicorn REMTyS.wsgi --bind 0.0.0.0:$PORTDAWSDASDA
